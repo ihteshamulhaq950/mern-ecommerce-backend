@@ -228,4 +228,9 @@ userSchema.methods.generateTemporaryToken = function (): IGenerateTemporaryToken
 
 };
 
-export const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
+const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
+
+export {
+    User,
+    IUser
+};

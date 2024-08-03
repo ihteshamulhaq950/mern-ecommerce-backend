@@ -40,3 +40,35 @@ export const getMongoosePaginateOptions = (
         }
     }
 }
+
+
+export const removedUnusedMulterImageFilesOnError = (req: Request): void => {
+
+    try {
+        const multerFile = req.file;
+        const multerFiles = req.files;
+
+        if (multerFile) {
+            removeLocalFile(multerFile.path)
+        }
+
+        if (multerFiles) {
+            const filesValueArray: Express.Multer.File[][] = Object.values(multerFiles);
+
+
+            filesValueArray.map((fileFields: Express.Multer.File[]) => {
+                fileFields.map((fileObject: Express.Multer.File) => {
+                    removeLocalFile(fileObject.path);
+                });
+            });
+        };
+
+    } catch (error) {
+        console.log("Error while removing unused multer files[s]", error);
+
+    }
+}
+
+
+
+
