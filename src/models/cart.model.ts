@@ -1,14 +1,17 @@
-import mongoose, { Schema, Model, Document } from "mongoose";
+import mongoose, { Schema, Model, Document, Types } from "mongoose";
 
+
+// Define the CartItem interface separately
+interface ICartItem {
+    productId: Types.ObjectId; // Use Types.ObjectId for defining ObjectId type
+    quantity: number;
+}
 
 interface ICart extends Document {
     _id: Schema.Types.ObjectId;
     owner: Schema.Types.ObjectId;
-    items: {
-        productId: Schema.Types.ObjectId;
-        quantity: number;
-    }[];
-    coupon: Schema.Types.ObjectId;
+    items: ICartItem[];
+    coupon: Schema.Types.ObjectId | null;
 };
 
 
@@ -42,4 +45,6 @@ const cartSchema: Schema<ICart> = new Schema<ICart>({
 }, { timestamps: true });
 
 
-export const Cart: Model<ICart> = mongoose.model("Cart", cartSchema);
+const Cart: Model<ICart> = mongoose.model<ICart>("Cart", cartSchema);
+
+export { Cart, ICart };

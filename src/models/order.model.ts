@@ -117,4 +117,6 @@ const orderSchema: Schema<IOrder> = new Schema({
 orderSchema.plugin(mongooseAggregatePaginate);
 
 
-export const Order: Model<IOrder> & AggregatePaginateModel<IOrder> = mongoose.model<IOrder, AggregatePaginateModel<IOrder>>("Order", orderSchema);
+const Order: Model<IOrder> & AggregatePaginateModel<IOrder> = mongoose.model<IOrder, AggregatePaginateModel<IOrder>>("Order", orderSchema);
+
+export { Order, IOrder };

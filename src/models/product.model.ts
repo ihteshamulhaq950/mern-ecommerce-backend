@@ -15,6 +15,7 @@ interface IProduct extends Document {
     price: number;
     stock: number;
     subImages: {
+        _id: Schema.Types.ObjectId;
         url: string;
         localPath: string;
     }[];
@@ -67,4 +68,6 @@ const productSchema: Schema<IProduct> = new Schema({
 
 productSchema.plugin(mongooseAggregatePaginate);
 
-export const Product: Model<IProduct> & AggregatePaginateModel<IProduct> = mongoose.model<IProduct, AggregatePaginateModel<IProduct>>("Product", productSchema);
+const Product: Model<IProduct> & AggregatePaginateModel<IProduct> = mongoose.model<IProduct, AggregatePaginateModel<IProduct>>("Product", productSchema);
+
+export { Product, IProduct };

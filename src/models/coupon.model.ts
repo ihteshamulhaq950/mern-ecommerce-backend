@@ -63,4 +63,6 @@ const couponSchema: Schema<ICoupon> = new Schema({
 
 couponSchema.plugin(mongooseAggregatePaginate);
 
-export const Coupon: Model<ICoupon> & AggregatePaginateModel<ICoupon> = mongoose.model<ICoupon, AggregatePaginateModel<ICoupon>>("Coupon", couponSchema);
+const Coupon: Model<ICoupon> & AggregatePaginateModel<ICoupon> = mongoose.model<ICoupon, AggregatePaginateModel<ICoupon>>("Coupon", couponSchema);
+
+export { Coupon, ICoupon };

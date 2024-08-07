@@ -2,6 +2,7 @@ export const DB_NAME: string = "ecommerce"
 
 export const USER_TEMPORARY_TOKEN_EXPIRY = 20 * 60 * 1000; // 20 MINUTES
 
+export const MAXIMUM_SUB_IMAGE_COUNT = 4;
 
 // export type CouponType = typeof CouponTypeEnum[keyof typeof CouponTypeEnum];
 
@@ -54,4 +55,6 @@ export enum UserRolesEnum {
 
 export const AvailableUserRoles: UserRolesEnum[] = Object.values(UserRolesEnum);
 
-
+export const paypalBaseUrl = {
+    sandbox: "https://api-m.sandbox.paypal.com",
+};
